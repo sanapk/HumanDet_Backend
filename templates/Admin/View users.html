@@ -1,0 +1,43 @@
+{% extends 'Admin/homeindex.html' %}
+{% block body %}
+
+<div class="row">
+        <div class="col-lg-12">
+            <form class="d-flex" role="search" method="post" action="/myapp/view_user_post/">
+                 {% csrf_token %}
+
+      <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search" required name="textfield">
+      <button class="btn btn-success" type="submit">Search</button>
+    </form>
+        </div><br><br>
+</div>
+    <table class="table table-striped">
+    <tr>
+        <td>s/no</td>
+        <td>photo</td>
+        <td>name</td>
+        <td>email</td>
+        <td>dob</td>
+        <td>gender</td>
+        <td>phone</td>
+        <td>address</td>
+    </tr>
+    {% for i in data %}
+    <tr>
+        <td>{{ forloop.counter }}</td>
+        <td><img src="{{ i.photo }}" height="50px" width="50px"></td>
+        <td>{{ i.name }}</td>
+        <td>{{ i.email }}</td>
+        <td>{{ i.dob }}</td>
+        <td>{{ i.gender }}</td>
+        <td>{{ i.phone }}</td>
+        <td>{{ i.place }},<br>
+            {{ i.pincode }},<br>
+            {{ i.district }}
+
+        </td>
+    </tr>
+    {% endfor %}
+</table>
+
+{% endblock %}
